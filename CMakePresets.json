@@ -1,0 +1,69 @@
+{
+  "version": 6,
+  "include": [
+    ".env.json"
+  ],
+  "configurePresets": [
+    {
+      "name": "conda-shared",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "environment": {
+        "LIBRARY_PREFIX": "$env{PREFIX}/Library",
+        "LD_LIBRARY_PATH": "$env{LIBRARY_PREFIX}/lib;$penv{LD_LIBRARY_PATH}",
+        "PATH": "$env{LIBRARY_PREFIX}/lib;$penv{PATH}",
+        "INCLUDE": "$env{LIBRARY_PREFIX}/include;$penv{INCLUDE}",
+        "LIB": "$penv{LIB};$env{LIBRARY_PREFIX}/lib",
+        "CPATH": "$penv{CPATH};$env{LIBRARY_PREFIX}/include"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_GENERATOR_PLATFORM": "",
+        "CMAKE_GENERATOR_TOOLSET": "",
+        "CMAKE_FIND_ROOT_PATH": "$env{PREFIX};$env{LIBRARY_PREFIX}",
+        "CMAKE_PROGRAM_PATH": "$env{LIBRARY_PREFIX}/bin;$env{PREFIX}/Scripts",
+        "CMAKE_PREFIX_PATH": "$env{PREFIX};$env{LIBRARY_PREFIX};$env{LIBRARY_PREFIX}/include;$env{LIBRARY_PREFIX}/lib;$env{LIBRARY_PREFIX}/bin",
+        "CMAKE_INSTALL_PREFIX": "$env{LIBRARY_PREFIX}",
+        "CMAKE_FIND_ROOT_PATH_MODE_PROGRAM": "NEVER",
+        "CMAKE_FIND_ROOT_PATH_MODE_LIBRARY": "ONLY",
+        "CMAKE_FIND_ROOT_PATH_MODE_INCLUDE": "ONLY"
+      }
+    },
+    {
+      "name": "msvc-ifx",
+      "description": "MSVC with Intel Fortran",
+      "inherits": [
+        "conda-shared",
+        "env-vars"
+      ],
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_Fortran_COMPILER": "ifx.exe"
+      },
+      "vendor": {
+        "jetbrains.com/clion": {
+          "toolchain": "Visual Studio (MSVC) with Intel Fortran"
+        }
+      }
+    },
+    {
+      "name": "msvc-flang",
+      "description": "MSVC with LLVM Flang",
+      "inherits": [
+        "conda-shared"
+      ],
+      "vendor": {
+        "jetbrains.com/clion": {
+          "toolchain": "Visual Studio (MSVC) with Flang"
+        }
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang-cl.exe",
+        "CMAKE_Fortran_COMPILER": "flang-new",
+        "CMAKE_LINKER": "lld-link",
+        "CMAKE_NM": "llvm-nm"
+      }
+    }
+  ]
+}
