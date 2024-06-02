@@ -17,16 +17,16 @@
 !     the multifrontal tree.
       TYPE ZMUMPS_ROOT_STRUC
         SEQUENCE
-        INTEGER :: MBLOCK, NBLOCK, NPROW, NPCOL
-        INTEGER :: MYROW, MYCOL
-        INTEGER :: SCHUR_MLOC, SCHUR_NLOC, SCHUR_LLD
-        INTEGER :: RHS_NLOC
-        INTEGER :: ROOT_SIZE, TOT_ROOT_SIZE
+        INTEGER(4) :: MBLOCK, NBLOCK, NPROW, NPCOL
+        INTEGER(4) :: MYROW, MYCOL
+        INTEGER(4) :: SCHUR_MLOC, SCHUR_NLOC, SCHUR_LLD
+        INTEGER(4) :: RHS_NLOC
+        INTEGER(4) :: ROOT_SIZE, TOT_ROOT_SIZE
 !       descriptor for scalapack
-        INTEGER, DIMENSION( 9 ) :: DESCRIPTOR
-        INTEGER :: CNTXT_BLACS, LPIV, rootpad0
-        INTEGER, DIMENSION(:), POINTER :: RG2L
-        INTEGER, DIMENSION(:), POINTER :: IPIV
+        INTEGER(4), DIMENSION( 9 ) :: DESCRIPTOR
+        INTEGER(4) :: CNTXT_BLACS, LPIV, rootpad0
+        INTEGER(4), DIMENSION(:), POINTER :: RG2L
+        INTEGER(4), DIMENSION(:), POINTER :: IPIV
 !       Centralized master of root
         COMPLEX(kind=8), DIMENSION(:), POINTER :: RHS_CNTR_MASTER_ROOT
 !       Used to access Schur easily from root structure
@@ -39,12 +39,12 @@
         COMPLEX(kind=8), DIMENSION(:,:), POINTER :: RHS_ROOT, rootpad2
 !       for try_nullspace preprocessing constant only:
         DOUBLE PRECISION :: QR_RCOND, rootpad3
-        LOGICAL :: yes, gridinit_done
+        LOGICAL(4) :: yes, gridinit_done
 !       for SVD on root (#define try_null_space)
         COMPLEX(kind=8), DIMENSION(:,:), POINTER :: SVD_U, SVD_VT
 !       for RR on root (#define try_null_space)
         DOUBLE PRECISION, DIMENSION(:), POINTER :: SINGULAR_VALUES
-        INTEGER :: NB_SINGULAR_VALUES,rootpad4
+        INTEGER(4) :: NB_SINGULAR_VALUES,rootpad4
 !
       END TYPE ZMUMPS_ROOT_STRUC
 !     multicore

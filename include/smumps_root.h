@@ -17,39 +17,39 @@
 !     the multifrontal tree.
       TYPE SMUMPS_ROOT_STRUC
         SEQUENCE
-        INTEGER :: MBLOCK, NBLOCK, NPROW, NPCOL
-        INTEGER :: MYROW, MYCOL
-        INTEGER :: SCHUR_MLOC, SCHUR_NLOC, SCHUR_LLD
-        INTEGER :: RHS_NLOC
-        INTEGER :: ROOT_SIZE, TOT_ROOT_SIZE
+        INTEGER(4) :: MBLOCK, NBLOCK, NPROW, NPCOL
+        INTEGER(4) :: MYROW, MYCOL
+        INTEGER(4) :: SCHUR_MLOC, SCHUR_NLOC, SCHUR_LLD
+        INTEGER(4) :: RHS_NLOC
+        INTEGER(4) :: ROOT_SIZE, TOT_ROOT_SIZE
 !       descriptor for scalapack
-        INTEGER, DIMENSION( 9 ) :: DESCRIPTOR
-        INTEGER :: CNTXT_BLACS, LPIV, rootpad0
-        INTEGER, DIMENSION(:), POINTER :: RG2L
-        INTEGER, DIMENSION(:), POINTER :: IPIV
+        INTEGER(4), DIMENSION( 9 ) :: DESCRIPTOR
+        INTEGER(4) :: CNTXT_BLACS, LPIV, rootpad0
+        INTEGER(4), DIMENSION(:), POINTER :: RG2L
+        INTEGER(4), DIMENSION(:), POINTER :: IPIV
 !       Centralized master of root
-        REAL, DIMENSION(:), POINTER :: RHS_CNTR_MASTER_ROOT
+        REAL(4), DIMENSION(:), POINTER :: RHS_CNTR_MASTER_ROOT
 !       Used to access Schur easily from root structure
-        REAL, DIMENSION(:), POINTER :: SCHUR_POINTER
+        REAL(4), DIMENSION(:), POINTER :: SCHUR_POINTER
 !       for try_null_space preprocessing constant only:
-        REAL, DIMENSION(:), POINTER :: QR_TAU, rootpad1
+        REAL(4), DIMENSION(:), POINTER :: QR_TAU, rootpad1
 !       Fwd in facto: 
 !           case of scalapack root: to store RHS in 2D block cyclic
 !           format compatible with root distribution
-        REAL, DIMENSION(:,:), POINTER :: RHS_ROOT, rootpad2
+        REAL(4), DIMENSION(:,:), POINTER :: RHS_ROOT, rootpad2
 !       for try_nullspace preprocessing constant only:
-        REAL :: QR_RCOND, rootpad3
-        LOGICAL :: yes, gridinit_done
+        REAL(4) :: QR_RCOND, rootpad3
+        LOGICAL(4) :: yes, gridinit_done
 !       for SVD on root (#define try_null_space)
-        REAL, DIMENSION(:,:), POINTER :: SVD_U, SVD_VT
+        REAL(4), DIMENSION(:,:), POINTER :: SVD_U, SVD_VT
 !       for RR on root (#define try_null_space)
-        REAL, DIMENSION(:), POINTER :: SINGULAR_VALUES
-        INTEGER :: NB_SINGULAR_VALUES,rootpad4
+        REAL(4), DIMENSION(:), POINTER :: SINGULAR_VALUES
+        INTEGER(4) :: NB_SINGULAR_VALUES,rootpad4
 !
       END TYPE SMUMPS_ROOT_STRUC
 !     multicore
       TYPE SMUMPS_L0OMPFAC_T
          SEQUENCE
-         REAL, POINTER, DIMENSION(:) :: A
+         REAL(4), POINTER, DIMENSION(:) :: A
          INTEGER(8) :: LA
       END TYPE SMUMPS_L0OMPFAC_T
